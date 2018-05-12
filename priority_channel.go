@@ -5,9 +5,14 @@ import (
 	"sync"
 )
 
-// Item is value to input into and to output from a channel.
-// Priority: The Item's priority. The higher the value, the higher the priority. If the values are equal to each other, the earlier input value, the higher the priority.
-// Value:    A value you want the item to keep.
+/*
+
+Item is value to input into and to output from a channel.
+
+	Priority: The Item's priority. The higher the value, the higher the priority. If the values are equal to each other, the earlier input value, the higher the priority.
+	Value:    A value you want the item to keep.
+
+*/
 type Item struct {
 	Priority int
 	Value    interface{}
@@ -15,17 +20,26 @@ type Item struct {
 
 type items []Item
 
-// PriorityChannel is a priority channel.
-// items: buffer size is maximum value of int.
-// In:    Input channel.
-// Out:   Output channel.
+/*
+
+PriorityChannel is a priority channel.
+
+	items: buffer size is maximum value of int.
+	In:    Input channel.
+	Out:   Output channel.
+
+*/
 type PriorityChannel struct {
 	items items
 	In    chan<- Item
 	Out   <-chan Item
 }
 
-// Priority.Len returns the number of items currentry kept by priority channel.
+/*
+
+Priority.Len returns the number of items currentry kept by priority channel.
+
+*/
 func (pc PriorityChannel) Len() int { return pc.items.Len() }
 
 func (is items) Len() int { return len(is) }
@@ -52,7 +66,11 @@ func (is *items) Pop() interface{} {
 	return i
 }
 
-// New create a priority channel.
+/*
+
+New create a priority channel.
+
+*/
 func New() *PriorityChannel {
 	pc := PriorityChannel{}
 	in := make(chan Item)
