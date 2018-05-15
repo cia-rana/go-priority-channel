@@ -7,7 +7,7 @@ import (
 
 /*
 
-Item is value to input into and to output from a channel.
+Item is a value inputed into and outputed from a channel.
 
 	Priority: The Item's priority. The higher the value, the higher the priority. If the values are equal to each other, the earlier input value, the higher the priority.
 	Value:    A value you want the item to keep.
@@ -24,7 +24,7 @@ type items []Item
 
 PriorityChannel is a priority channel.
 
-	items: buffer size is maximum value of int.
+	items: Buffer size is maximum value of int.
 	In:    Input channel.
 	Out:   Output channel.
 
@@ -68,7 +68,7 @@ func (is *items) Pop() interface{} {
 
 /*
 
-New create a priority channel.
+New creates a priority channel.
 
 */
 func New() *PriorityChannel {
